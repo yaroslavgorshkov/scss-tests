@@ -1,0 +1,120 @@
+$green: #369b60;
+$blue: #488baf;
+$red: #ae4c4c;
+$white: #d3d3d3;
+
+@mixin rounded-button ($bgc: $white) {
+    border-radius: 5px;
+    background-color: $bgc;
+}
+
+@mixin btn-size($size) {
+    @if $size == "small" {
+        width: 100px;
+        padding: 10px;
+    } @else if $size == "middle"{
+        width: 200px;
+        padding: 20px;
+    } @else if $size == "big" {
+        width: 400px;
+        padding: 50px;
+    } @else {
+        width: 150px;
+        padding: 25px;
+    }
+}
+
+@mixin use-elements-text-style {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+}
+
+.normal-button {
+    @include rounded-button;
+    @include use-elements-text-style;
+}
+
+.no-button {
+    @include rounded-button($red);
+    @include use-elements-text-style;
+}
+
+.yes-button {
+    @include rounded-button($green);
+    @include use-elements-text-style;
+}
+
+.send-button {
+    @include rounded-button($blue);
+    @include use-elements-text-style;
+}
+
+.big-button {
+    @include btn-size("big");
+    @include use-elements-text-style;
+}
+
+.middle-button {
+    @include btn-size("middle");
+    @include use-elements-text-style;
+}
+
+.small-button {
+    @include btn-size("small");
+    @include use-elements-text-style;
+}
+
+.each-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: $white;
+    $colors: primary $blue, success $green, danger $red;
+    @each $name, $color in $colors {
+        .btn-#{$name} {
+            background-color: $color;
+            width: 100px;
+            padding: 10px;
+        }
+    }
+}
+
+.while-example-container {
+    display: flex;
+    background-color: $red;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    $number: 1;
+    @while $number <= 5 {
+        .box-#{$number} {
+            width: 100px + ($number * 10);
+            padding: 10px;
+            background-color: $green;
+        }
+        $number: $number + 1;
+    }
+}
+
+.function-test-container-1 {
+    background-color: $blue;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    $standard-font-size: 10px;
+    @function font-size-multiplier($multiplier) {
+        @return $standard-font-size * $multiplier;
+    }
+
+    @for $i from 1 through 2 {
+        .child-#{$i} {
+            font-size: font-size-multiplier($i);
+            width: 100px;
+            padding: 10px;
+            background-color: $green;
+        }
+    }
+}

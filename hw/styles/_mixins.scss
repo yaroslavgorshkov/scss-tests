@@ -1,0 +1,18 @@
+@mixin extended-font-definition ($font-size, $line-height, $font-weight, $color, $font-family: Playfair Display) {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: $font-weight;
+    color: $color;
+
+    font-family: $font-family;
+}
+
+@mixin short-font-definition ($font-size, $line-height) {
+    font-size: $font-size;
+    line-height: $line-height;
+}
+
+@mixin side-size($width, $height) {
+    width: $width;
+    height: $height;
+}
